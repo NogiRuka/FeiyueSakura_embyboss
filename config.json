@@ -1,68 +1,80 @@
 {
-  "bot_name": "EmbyBot",
-  "bot_token": "YOUR_BOT_TOKEN_HERE",
-  "owner_api": 12345,
-  "owner_hash": "YOUR_API_HASH_HERE",
-  "owner": 123456789,
-  "group": [
-    -1001234567890
-  ],
-  "main_group": "test_group",
-  "chanel": "test_channel",
-  "bot_photo": "https://telegra.ph/file/3b6cd2a89b652e72e0d3b.png",
-  "admins": [],
-  "money": "花币",
-  "emby_api": "YOUR_EMBY_API_KEY",
-  "emby_url": "http://localhost:8096",
-  "emby_line": "localhost",
-  "db_type": "sqlite",
-  "db_path": "./data/embybot.db",
-  "emby_block": [
-    "nsfw"
-  ],
-  "extra_emby_libs": [
-    "电视"
-  ],
-  "open": {
-    "stat": false,
-    "all_user": 1000,
-    "timing": 0,
-    "tem": 0,
-    "allow_code": true,
-    "checkin": true,
-    "exchange": true,
-    "whitelist": true,
-    "invite": false,
-    "leave_ban": true,
-    "uplays": true,
-    "exchange_cost": 300,
-    "whitelist_cost": 9999,
-    "invite_cost": 1000
-  },
-  "tz_ad": "",
-  "tz_api": "",
-  "tz_id": [],
-  "ranks": {
-    "logo": "SAKURA",
-    "backdrop": false
-  },
-  "schedall": {
-    "dayrank": true,
-    "weekrank": true,
-    "dayplayrank": false,
-    "weekplayrank": false,
-    "check_ex": true,
-    "low_activity": false,
-    "backup_db": false
-  },
-  "db_backup_dir": "./db_backup",
-  "db_backup_maxcount": 7,
-  "w_anti_chanel_ids": [],
-  "proxy": {
-    "scheme": "",
-    "hostname": "",
-    "port": null,
-    "username": "",
-    "password": ""
-  }
+    "bot_name": "EmbyBot",
+    "bot_token": "8497906229:AAHdoDyaLc0HaUjx6j9NLOqqh2Amf01zwmE",
+    "owner_api": 20855073,
+    "owner_hash": "1a103d1d19442104af2d8d57c3c1f232",
+    "owner": 1369588230,
+    "group": [
+        -1001234567890
+    ],
+    "main_group": "test_group",
+    "chanel": "test_channel",
+    "bot_photo": "https://telegra.ph/file/3b6cd2a89b652e72e0d3b.png",
+    "open": {
+        "stat": false,
+        "all_user": 1000,
+        "timing": 0,
+        "tem": 0,
+        "checkin": true,
+        "exchange": true,
+        "whitelist": true,
+        "invite": false,
+        "leave_ban": true,
+        "uplays": true,
+        "exchange_cost": 300,
+        "whitelist_cost": 9999,
+        "invite_cost": 1000
+    },
+    "admins": [],
+    "money": "花币",
+    "emby_api": "YOUR_EMBY_API_KEY",
+    "emby_url": "http://localhost:8096",
+    "emby_block": [
+        "nsfw"
+    ],
+    "emby_line": "localhost",
+    "extra_emby_libs": [
+        "电视"
+    ],
+    "db_type": "sqlite",
+    "db_path": "./data/embybot.db",
+    "tz_ad": "",
+    "tz_api": "",
+    "tz_id": [],
+    "ranks": {
+        "logo": "SAKURA",
+        "backdrop": false
+    },
+    "schedall": {
+        "dayrank": true,
+        "weekrank": true,
+        "dayplayrank": false,
+        "weekplayrank": false,
+        "check_ex": true,
+        "low_activity": false,
+        "day_ranks_message_id": 0,
+        "week_ranks_message_id": 0,
+        "restart_chat_id": 0,
+        "restart_msg_id": 0,
+        "backup_db": false
+    },
+    "db_backup_dir": "./db_backup",
+    "db_backup_maxcount": 7,
+    "w_anti_channel_ids": [],
+    "proxy": {
+        "scheme": "",
+        "hostname": "",
+        "port": null,
+        "username": "",
+        "password": ""
+    },
+    "kk_gift_days": 30,
+    "moviepilot_open": false,
+    "moviepilot_username": "",
+    "moviepilot_password": "",
+    "moviepilot_url": "",
+    "moviepilot_access_token": "",
+    "download_cost": 20,
+    "download_log_chatid": 0,
+    "fuxx_pitao": true
 }

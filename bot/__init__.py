@@ -123,12 +123,16 @@ with contextlib.suppress(ImportError):
 # 从aiogram导入Bot和Dispatcher
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
+from aiogram.client.default import DefaultBotProperties
 
 # 代理配置
 proxy = {} if not config.proxy.scheme else config.proxy.dict()
 
-# 创建aiogram Bot实例
-bot = Bot(token=bot_token, parse_mode=ParseMode.MARKDOWN)
+# 创建aiogram Bot实例 - 使用新的语法
+bot = Bot(
+    token=bot_token, 
+    default=DefaultBotProperties(parse_mode=ParseMode.MARKDOWN)
+)
 
 # 创建Dispatcher实例
 dp = Dispatcher()
