@@ -8,7 +8,7 @@ from bot import bot, prefixes, bot_photo, Now, LOGGER, config, save_config, _ope
 from pyrogram import filters
 
 from bot.func_helper.filters import admins_on_filter
-from bot.func_helper.fix_bottons import config_preparation, close_it_ikb, back_config_p_ikb, back_set_ikb, try_set_buy
+from bot.func_helper.aiogram_buttons import config_preparation, close_it_ikb, back_config_p_ikb, back_set_ikb, try_set_buy
 from bot.func_helper.msg_utils import deleteMessage, editMessage, callAnswer, callListen, sendPhoto, sendFile
 
 

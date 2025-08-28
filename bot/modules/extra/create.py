@@ -5,7 +5,7 @@ from pyrogram.errors import BadRequest
 from bot import bot, prefixes, LOGGER, emby_line, owner, bot_photo, schedall
 from bot.func_helper.emby import emby
 from bot.func_helper.filters import admins_on_filter
-from bot.func_helper.fix_bottons import cv_user_ip
+from bot.func_helper.aiogram_buttons import cv_user_ip
 from bot.func_helper.msg_utils import sendMessage, editMessage, callAnswer, sendPhoto
 from bot.sql_helper.sql_emby import sql_get_emby
 from bot.sql_helper.sql_emby2 import sql_get_emby2

@@ -23,6 +23,12 @@ cd FeiyueSakura_embyboss
 ```
 
 ### 2. 安装Python依赖
+
+#### 方法1：使用安装脚本（推荐）
+- **Windows**: 双击运行 `install_dependencies.bat`
+- **Linux/macOS**: 运行 `bash install_dependencies.sh`
+
+#### 方法2：手动安装
 ```bash
 # 使用pip安装
 pip install -r requirements.txt
@@ -36,6 +42,12 @@ source venv/bin/activate  # Linux/macOS
 # 或
 venv\Scripts\activate     # Windows
 pip install -r requirements.txt
+```
+
+#### 方法3：单独安装缺失的依赖
+如果遇到特定模块缺失，可以单独安装：
+```bash
+pip install cacheout loguru pydantic SQLAlchemy aiogram
 ```
 
 ### 3. 配置机器人

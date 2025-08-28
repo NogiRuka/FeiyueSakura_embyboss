@@ -2,7 +2,7 @@ from pyrogram import filters
 from bot import bot
 from bot.func_helper.filters import admins_on_filter
 from bot.func_helper.msg_utils import editMessage
-from bot.func_helper.fix_bottons import whitelist_page_ikb, normaluser_page_ikb
+from bot.func_helper.aiogram_buttons import whitelist_page_ikb, normaluser_page_ikb
 from bot.sql_helper.sql_emby import get_all_emby, Emby
 from bot.func_helper.msg_utils import callAnswer
 import math

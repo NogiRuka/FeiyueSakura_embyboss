@@ -8,7 +8,7 @@ from bot import bot, emby_line
 from bot.func_helper.emby import emby
 from bot.func_helper.filters import user_in_group_on_filter
 from bot.sql_helper.sql_emby import sql_get_emby
-from bot.func_helper.fix_bottons import cr_page_server
+from bot.func_helper.aiogram_buttons import cr_page_server
 from bot.func_helper.msg_utils import callAnswer, editMessage
 
 

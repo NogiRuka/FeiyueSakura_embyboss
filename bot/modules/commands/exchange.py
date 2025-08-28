@@ -5,7 +5,7 @@ from datetime import timedelta, datetime
 
 from bot import bot, _open, LOGGER, bot_photo
 from bot.func_helper.emby import emby
-from bot.func_helper.fix_bottons import register_code_ikb
+from bot.func_helper.aiogram_buttons import register_code_ikb
 from bot.func_helper.msg_utils import sendMessage, sendPhoto
 from bot.sql_helper.sql_code import Code
 from bot.sql_helper.sql_emby import sql_get_emby, Emby

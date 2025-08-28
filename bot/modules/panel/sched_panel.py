@@ -4,7 +4,7 @@ import os
 from pyrogram import filters
 from bot import bot, sakura_b, schedall, save_config, prefixes, _open, owner, LOGGER
 from bot.func_helper.filters import admins_on_filter, user_in_group_on_filter
-from bot.func_helper.fix_bottons import sched_buttons, plays_list_button
+from bot.func_helper.aiogram_buttons import sched_buttons, plays_list_button
 from bot.func_helper.msg_utils import callAnswer, editMessage, deleteMessage
 from bot.func_helper.scheduler import Scheduler
 from bot.scheduler import *
