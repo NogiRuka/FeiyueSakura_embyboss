@@ -13,16 +13,27 @@
 - **原数据库**: MySQL (需要服务器配置)
 - **新数据库**: SQLite (文件型数据库，无需额外配置)
 
-### 3. 依赖更新
+### 3. 部署方式简化
+- **原部署**: Docker容器化部署 (需要Docker环境)
+- **新部署**: 直接Python运行 (无需Docker，更简单)
+
+### 4. 依赖更新
 ```bash
 # 安装新依赖
 pip install -r requirements.txt
 ```
 
-### 4. 配置文件更新
+### 5. 配置文件更新
 - 移除了 MySQL 相关配置
 - 添加了 SQLite 数据库路径配置
 - 简化了数据库配置项
+
+### 6. 移除Docker相关文件
+- 删除了 `docker-compose.yml`
+- 删除了 `Dockerfile`
+- 删除了 `embyboss.service`
+- 删除了Docker相关的GitHub Actions
+- 更新了数据库备份逻辑，支持SQLite备份
 
 ## 项目结构说明
 
@@ -114,6 +125,21 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+## 部署优势
+
+### 相比Docker部署的优势
+1. **更简单**: 无需安装Docker，直接运行Python脚本
+2. **更轻量**: 不需要容器化，资源占用更少
+3. **更灵活**: 可以直接修改代码，无需重新构建镜像
+4. **更易调试**: 可以直接在本地运行和调试
+5. **跨平台**: 支持Windows、Linux、macOS等操作系统
+
+### 适用场景
+- 个人使用或小团队
+- 开发和测试环境
+- 资源受限的服务器
+- 需要频繁修改代码的场景
 
 ## 常见问题
 

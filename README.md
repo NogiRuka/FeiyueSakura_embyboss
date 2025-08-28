@@ -6,7 +6,7 @@
 <a href="https://github.com/berry8838/Sakura_embyboss/forks"><img src="https://img.shields.io/github/forks/berry8838/Sakura_embyboss" alt="forks"></a> 
 <a href="https://github.com/berry8838/Sakura_embyboss/issues"><img src="https://img.shields.io/github/issues/berry8838/Sakura_embyboss" alt="issue"></a>  
 <a href="https://github.com/berry8838/Sakura_embyboss/blob/master/LICENSE"><img src="https://img.shields.io/github/license/berry8838/Sakura_embyboss" alt="license"></a> 
-<a href="https://hub.docker.com/r/jingwei520/sakura_embyboss" ><img src="https://img.shields.io/docker/v/jingwei520/sakura_embyboss/latest?logo=docker" alt="docker"></a>
+
 <a href="" ><img src="https://img.shields.io/badge/platform-amd64-pink" alt="plat"></a>
 </p>
 <br>
@@ -38,12 +38,12 @@
       ```
 - **如何部署：**
 
-  将镜像名称修改为`dddddluo/feiyue_sakura_embyboss:v1.1.3`，其余配置请参考原项目说明
+  本项目已改造为aiogram框架，使用SQLite数据库，无需Docker部署。直接运行Python脚本即可。
 
 ## 📜 项目说明
 
 - **用Telegram管理Emby用户**（开服） 安装使用 👉 [项目文档](https://berry8838.github.io/Sakura_embyboss)
-- **推荐使用 Debian 11操作系统，AMD处理器架构的vps搭建**
+- **推荐使用 Python 3.8+ 环境，支持Windows、Linux、macOS等操作系统**
 - 解决不了大的技术问题（因为菜菜），如需要，请自行fork修改，~~如果能提点有意思的pr更好啦~~
 - 反馈请尽量 issue，看到会处理
 
