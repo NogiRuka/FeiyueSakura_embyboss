@@ -1,9 +1,15 @@
-# __all__ = ['checkin', 'leave_delemby', 'leave_unauth_group', 'close_it', 'on_inline_query']
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+回调模块初始化文件 - aiogram版本
+"""
 
-# from . import checkin, leave_delemby, leave_unauth_group, on_inline_query, close_it
+# 暂时只导入已迁移的模块
+from .close_it import register_close_it_router
 
-from .checkin import user_in_checkin
-from .leave_delemby import leave_del_emby
-from .leave_unauth_group import anti_use_bot
-from .on_inline_query import find_sth_media
-from .close_it import close_it
+# 注册所有回调路由器
+def register_all_callback_routers(dp):
+    """注册所有回调路由器"""
+    from bot import dp as bot_dp
+    register_close_it_router()
+    print("✅ 已注册回调路由器: close_it")

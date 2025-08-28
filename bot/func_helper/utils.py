@@ -20,6 +20,25 @@ def judge_admins(uid):
         return True
 
 
+async def user_in_group_filter(message_or_callback):
+    """
+    检查用户是否在授权群组中
+    :param message_or_callback: Message 或 CallbackQuery 对象
+    :return: bool
+    """
+    try:
+        # 获取用户ID
+        if hasattr(message_or_callback, 'from_user'):
+            user_id = message_or_callback.from_user.id
+        else:
+            user_id = message_or_callback.from_user.id
+        
+        # 检查用户是否在授权群组中
+        return user_id in group
+    except Exception:
+        return False
+
+
 # @cache.memoize(ttl=60)
 async def members_info(tg=None, name=None):
     """
