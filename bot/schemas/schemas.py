@@ -40,7 +40,7 @@ class Open(BaseModel):
     # def convert_to_bool(cls, v):
     #     if isinstance(v, str):
     #         return v.lower() == 'y'
-    #     return v
+    #         return v
 
     checkin: bool
     exchange: bool
@@ -122,18 +122,14 @@ class Config(BaseModel):
     emby_block: Optional[List[str]] = []
     emby_line: str
     extra_emby_libs: Optional[List[str]] = []
-    db_host: str
-    db_user: str
-    db_pwd: str
-    db_name: str
-    db_port: int = 3306
+    # 数据库配置 - 改为SQLite
+    db_type: str = "sqlite"  # 数据库类型：sqlite
+    db_path: str = "./data/embybot.db"  # SQLite数据库文件路径
     tz_ad: Optional[str] = None
     tz_api: Optional[str] = None
     tz_id: Optional[List[int]] = []
     ranks: Ranks
     schedall: Schedall
-    db_is_docker: bool = False
-    db_docker_name: str = "mysql"
     db_backup_dir: str = "./db_backup"
     db_backup_maxcount: int = 7
     # another_line: Optional[List[str]] = []

@@ -38,16 +38,9 @@ emby_url = config.emby_url
 emby_line = config.emby_line
 emby_block = config.emby_block
 extra_emby_libs = config.extra_emby_libs
-# # 数据库
-db_host = config.db_host
-db_user = config.db_user
-db_pwd = config.db_pwd
-db_name = config.db_name
-db_port = config.db_port
-db_is_docker = config.db_is_docker
-db_docker_name = config.db_docker_name
-db_backup_dir = config.db_backup_dir
-db_backup_maxcount = config.db_backup_maxcount
+# 数据库配置 - 改为SQLite
+db_type = config.db_type
+db_path = config.db_path
 # 探针
 tz_ad = config.tz_ad
 tz_api = config.tz_api
@@ -66,71 +59,78 @@ fuxx_pitao = config.fuxx_pitao
 save_config()
 
 LOGGER.info("配置文件加载完毕")
-from pyrogram.types import BotCommand
+
+# 从aiogram导入BotCommand
+from aiogram.types import BotCommand
 
 '''定义不同等级的人使用不同命令'''
 user_p = [
-    BotCommand("start", "[私聊] 开启用户面板"),
-    BotCommand("myinfo", "[用户] 查看状态"),
-    BotCommand("count", "[用户] 媒体库数量"),
-    BotCommand("red", "[用户/禁言] 发红包"),
-    BotCommand("srank", "[用户/禁言] 查看计分")]
+    BotCommand(command="start", description="[私聊] 开启用户面板"),
+    BotCommand(command="myinfo", description="[用户] 查看状态"),
+    BotCommand(command="count", description="[用户] 媒体库数量"),
+    BotCommand(command="red", description="[用户/禁言] 发红包"),
+    BotCommand(command="srank", description="[用户/禁言] 查看计分")]
 
 # 取消 BotCommand("exchange", "[私聊] 使用注册码")
 admin_p = user_p + [
-    BotCommand("kk", "管理用户 [管理]"),
-    BotCommand("score", "加/减积分 [管理]"),
-    BotCommand("coins", f"加/减{sakura_b} [管理]"),
-    BotCommand("deleted", f"清理死号 [管理]"),
-    BotCommand("kick_not_emby", f"踢出当前群内无号崽 [管理]"),
-    BotCommand("renew", "调整到期时间 [管理]"),
-    BotCommand("rmemby", "删除用户[包括非tg] [管理]"),
-    BotCommand("prouser", "增加白名单 [管理]"),
-    BotCommand("revuser", "减少白名单 [管理]"),
-    BotCommand("rev_white_channel", "移除皮套人白名单 [管理]"),
-    BotCommand("white_channel", "添加皮套人白名单 [管理]"),
-    BotCommand("unban_channel", "解封皮套人 [管理]"),
-    BotCommand("syncgroupm", "消灭不在群的人 [管理]"),
-    BotCommand("syncunbound", "消灭未绑定bot的emby账户 [管理]"),
-    BotCommand("low_activity", "手动运行活跃检测 [管理]"),
-    BotCommand("check_ex", "手动到期检测 [管理]"),
-    BotCommand("uranks", "召唤观影时长榜，失效时用 [管理]"),
-    BotCommand("days_ranks", "召唤播放次数日榜，失效时用 [管理]"),
-    BotCommand("week_ranks", "召唤播放次数周榜，失效时用 [管理]"),
-    BotCommand("embyadmin", "开启emby控制台权限 [管理]"),
-    BotCommand("ucr", "私聊创建非tg的emby用户 [管理]"),
-    BotCommand("uinfo", "查询指定用户名 [管理]"),
-    BotCommand("urm", "删除指定用户名 [管理]"),
-    BotCommand("restart", "重启bot [owner]"),
+    BotCommand(command="kk", description="管理用户 [管理]"),
+    BotCommand(command="score", description="加/减积分 [管理]"),
+    BotCommand(command="coins", description=f"加/减{sakura_b} [管理]"),
+    BotCommand(command="deleted", description="清理死号 [管理]"),
+    BotCommand(command="kick_not_emby", description=f"踢出当前群内无号崽 [管理]"),
+    BotCommand(command="renew", description="调整到期时间 [管理]"),
+    BotCommand(command="rmemby", description="删除用户[包括非tg] [管理]"),
+    BotCommand(command="prouser", description="增加白名单 [管理]"),
+    BotCommand(command="revuser", description="减少白名单 [管理]"),
+    BotCommand(command="rev_white_channel", description="移除皮套人白名单 [管理]"),
+    BotCommand(command="white_channel", description="添加皮套人白名单 [管理]"),
+    BotCommand(command="unban_channel", description="解封皮套人 [管理]"),
+    BotCommand(command="syncgroupm", description="消灭不在群的人 [管理]"),
+    BotCommand(command="syncunbound", description="消灭未绑定bot的emby账户 [管理]"),
+    BotCommand(command="low_activity", description="手动运行活跃检测 [管理]"),
+    BotCommand(command="check_ex", description="手动到期检测 [管理]"),
+    BotCommand(command="uranks", description="召唤观影时长榜，失效时用 [管理]"),
+    BotCommand(command="days_ranks", description="召唤播放次数日榜，失效时用 [管理]"),
+    BotCommand(command="week_ranks", description="召唤播放次数周榜，失效时用 [管理]"),
+    BotCommand(command="embyadmin", description="开启emby控制台权限 [管理]"),
+    BotCommand(command="ucr", description="私聊创建非tg的emby用户 [管理]"),
+    BotCommand(command="uinfo", description="查询指定用户名 [管理]"),
+    BotCommand(command="urm", description="删除指定用户名 [管理]"),
+    BotCommand(command="restart", description="重启bot [owner]"),
 ]
 
 owner_p = admin_p + [
-    BotCommand("proadmin", "添加bot管理 [owner]"),
-    BotCommand("revadmin", "移除bot管理 [owner]"),
-    BotCommand("renewall", "一键派送天数给所有未封禁的用户 [owner]"),
-    BotCommand("coinsall", "一键派送币币给所有未封禁的用户 [owner]"),
-    BotCommand("callall", "群发消息给每个人 [owner]"),
-    BotCommand("bindall_id", "一键更新用户们Embyid [owner]"),
-    BotCommand("backup_db", "手动备份数据库[owner]"),
-    BotCommand('restore_from_db', '恢复Emby账户[owner]'),
-    BotCommand("config", "开启bot高级控制面板 [owner]"),
-    BotCommand("embylibs_unblockall", "一键开启所有用户的媒体库 [owner]"),
-    BotCommand("embylibs_blockall", "一键关闭所有用户的媒体库 [owner]")
+    BotCommand(command="proadmin", description="添加bot管理 [owner]"),
+    BotCommand(command="revadmin", description="移除bot管理 [owner]"),
+    BotCommand(command="renewall", description="一键派送天数给所有未封禁的用户 [owner]"),
+    BotCommand(command="coinsall", description="一键派送币币给所有未封禁的用户 [owner]"),
+    BotCommand(command="callall", description="群发消息给每个人 [owner]"),
+    BotCommand(command="bindall_id", description="一键更新用户们Embyid [owner]"),
+    BotCommand(command="backup_db", description="手动备份数据库[owner]"),
+    BotCommand(command='restore_from_db', description='恢复Emby账户[owner]'),
+    BotCommand(command="config", description="开启bot高级控制面板 [owner]"),
+    BotCommand(command="embylibs_unblockall", description="一键开启所有用户的媒体库 [owner]"),
+    BotCommand(command="embylibs_blockall", description="一键关闭所有用户的媒体库 [owner]")
 ]
 if len(extra_emby_libs) > 0:
-    owner_p += [BotCommand("extraembylibs_blockall", "一键关闭所有用户的额外媒体库 [owner]"),
-                BotCommand("extraembylibs_unblockall", "一键开启所有用户的额外媒体库 [owner]")]
+    owner_p += [BotCommand(command="extraembylibs_blockall", description="一键关闭所有用户的额外媒体库 [owner]"),
+                BotCommand(command="extraembylibs_unblockall", description="一键开启所有用户的额外媒体库 [owner]")]
 
 with contextlib.suppress(ImportError):
     import uvloop
     uvloop.install()
-from pyrogram import enums
-from pyromod import Client
 
+# 从aiogram导入Bot和Dispatcher
+from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
+
+# 代理配置
 proxy = {} if not config.proxy.scheme else config.proxy.dict()
 
-bot = Client(bot_name, api_id=owner_api, api_hash=owner_hash, bot_token=bot_token, proxy=proxy,
-             workers=300,
-             max_concurrent_transmissions=1000, parse_mode=enums.ParseMode.MARKDOWN)
+# 创建aiogram Bot实例
+bot = Bot(token=bot_token, parse_mode=ParseMode.MARKDOWN)
 
-LOGGER.info("Clinet 客户端准备")
+# 创建Dispatcher实例
+dp = Dispatcher()
+
+LOGGER.info("aiogram Bot 客户端准备完毕")
