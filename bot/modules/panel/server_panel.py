@@ -5,11 +5,11 @@
 from datetime import datetime, timezone, timedelta
 from pyrogram import filters
 from bot import bot, emby_line
-from bot.func_helper.emby import emby
-from bot.func_helper.filters import user_in_group_on_filter
+from bot.integrations.emby import emby
+from bot.filters import user_in_group_on_filter
 from bot.sql_helper.sql_emby import sql_get_emby
-from bot.func_helper.aiogram_buttons import cr_page_server
-from bot.func_helper.msg_utils import callAnswer, editMessage
+from bot.ui.aiogram_buttons import cr_page_server
+from bot.messaging.msg_utils import callAnswer, editMessage
 
 
 @bot.on_callback_query(filters.regex('server') & user_in_group_on_filter)

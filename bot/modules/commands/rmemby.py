@@ -1,9 +1,9 @@
 from pyrogram import filters
 
 from bot import bot, prefixes, LOGGER
-from bot.func_helper.emby import emby
-from bot.func_helper.filters import admins_on_filter
-from bot.func_helper.msg_utils import deleteMessage, editMessage
+from bot.integrations.emby import emby
+from bot.filters import admins_on_filter
+from bot.messaging.msg_utils import deleteMessage, editMessage
 from bot.sql_helper.sql_emby import sql_get_emby
 
 

@@ -7,9 +7,9 @@
 from bot import bot, prefixes, bot_photo, Now, LOGGER, config, save_config, _open
 from pyrogram import filters
 
-from bot.func_helper.filters import admins_on_filter
-from bot.func_helper.aiogram_buttons import config_preparation, close_it_ikb, back_config_p_ikb, back_set_ikb, try_set_buy
-from bot.func_helper.msg_utils import deleteMessage, editMessage, callAnswer, callListen, sendPhoto, sendFile
+from bot.filters import admins_on_filter
+from bot.ui.aiogram_buttons import config_preparation, close_it_ikb, back_config_p_ikb, back_set_ikb, try_set_buy
+from bot.messaging.msg_utils import deleteMessage, editMessage, callAnswer, callListen, sendPhoto, sendFile
 
 
 @bot.on_message(filters.command('config', prefixes=prefixes) & admins_on_filter)

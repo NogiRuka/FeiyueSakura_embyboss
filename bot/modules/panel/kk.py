@@ -6,11 +6,11 @@ import pyrogram
 from pyrogram import filters
 from pyrogram.errors import BadRequest
 from bot import bot, prefixes, owner, bot_photo, admins, LOGGER, extra_emby_libs, config
-from bot.func_helper.emby import emby
-from bot.func_helper.filters import admins_on_filter
-from bot.func_helper.aiogram_buttons import cr_kk_ikb, gog_rester_ikb
-from bot.func_helper.msg_utils import deleteMessage, sendMessage, sendPhoto, editMessage
-from bot.func_helper.utils import judge_admins, cr_link_two
+from bot.integrations.emby import emby
+from bot.filters import admins_on_filter
+from bot.ui.aiogram_buttons import cr_kk_ikb, gog_rester_ikb
+from bot.messaging.msg_utils import deleteMessage, sendMessage, sendPhoto, editMessage
+from bot.common.utils import judge_admins, cr_link_two
 from bot.sql_helper.sql_emby import sql_add_emby, sql_get_emby, sql_update_emby, Emby
 
 

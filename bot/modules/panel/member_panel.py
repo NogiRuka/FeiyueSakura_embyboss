@@ -4,14 +4,14 @@
 用户面板模块 - aiogram版本
 """
 
-from aiogram import Router, F
+from aiogram import Router, F, Dispatcher
 from aiogram.types import CallbackQuery
-from bot.func_helper.aiogram_buttons import (
+from bot.ui.aiogram_buttons import (
     members_ikb, back_start_ikb, back_members_ikb,
     re_create_ikb, re_changetg_ikb, re_bindtg_ikb
 )
-from bot.func_helper.msg_utils import editMessage
-from bot.func_helper.utils import user_in_group_filter
+from bot.messaging.msg_utils import editMessage
+from bot.common.utils import user_in_group_filter
 
 # 创建路由器
 router = Router(name="member_panel")
@@ -68,6 +68,6 @@ async def bind_tg_callback(callback: CallbackQuery):
     await editMessage(callback, text, keyboard)
 
 # 注册路由器
-def register_member_panel_router():
-    from bot import dp
-    dp.include_router(router)
+def register_member_panel_router(dispatcher: Dispatcher) -> None:
+    """注册用户面板路由到指定 `dispatcher`。"""
+    dispatcher.include_router(router)

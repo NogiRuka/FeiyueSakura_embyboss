@@ -4,7 +4,7 @@ from pyrogram.types import ChatMemberUpdated
 
 from bot import bot, group, LOGGER, _open
 from bot.sql_helper.sql_emby import sql_get_emby
-from bot.func_helper.emby import emby
+from bot.integrations.emby import emby
 
 
 @bot.on_chat_member_updated(filters.chat(group))

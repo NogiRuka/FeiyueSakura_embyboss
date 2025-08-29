@@ -6,7 +6,7 @@ import asyncio
 from pyrogram import filters
 
 from bot import bot, group, owner, LOGGER
-from bot.func_helper.aiogram_buttons import dp_g_ikb
+from bot.ui.aiogram_buttons import dp_g_ikb
 
 # 定义一个集合来存储已经处理过的群组的 id
 processed_groups = set()

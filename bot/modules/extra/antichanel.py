@@ -9,7 +9,7 @@ import asyncio
 from pyrogram import filters
 
 from bot import bot, prefixes, w_anti_channel_ids, LOGGER, save_config, config
-from bot.func_helper.filters import admins_on_filter
+from bot.filters import admins_on_filter
 
 
 async def get_user_input(msg):

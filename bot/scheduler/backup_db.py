@@ -1,7 +1,7 @@
 import os
 import asyncio
 from bot import bot, owner, LOGGER, db_type, db_path, db_backup_dir, db_backup_maxcount
-from bot.func_helper.backup_db_utils import BackupDBUtils
+from bot.storage.backup_db_utils import BackupDBUtils
 
 
 class DbBackupUtils:

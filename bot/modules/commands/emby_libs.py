@@ -3,9 +3,9 @@ import time
 from pyrogram import filters
 
 from bot import bot, owner, prefixes, extra_emby_libs, LOGGER, Now
-from bot.func_helper.msg_utils import sendMessage, deleteMessage
+from bot.messaging.msg_utils import sendMessage, deleteMessage
 from bot.sql_helper.sql_emby import get_all_emby, Emby
-from bot.func_helper.emby import emby
+from bot.integrations.emby import emby
 
 # embylibs_block
 @bot.on_message(filters.command('embylibs_blockall', prefixes) & filters.user(owner))

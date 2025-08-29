@@ -16,10 +16,10 @@ from asyncio import sleep
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 from bot import bot, prefixes, bot_photo, LOGGER, owner, group
-from bot.func_helper.emby import emby
-from bot.func_helper.filters import admins_on_filter
+from bot.integrations.emby import emby
+from bot.filters import admins_on_filter
 from bot.sql_helper.sql_emby import get_all_emby, Emby, sql_get_emby, sql_update_embys, sql_delete_emby
-from bot.func_helper.msg_utils import deleteMessage, sendMessage, sendPhoto
+from bot.messaging.msg_utils import deleteMessage, sendMessage, sendPhoto
 from bot.sql_helper.sql_emby2 import sql_get_emby2
 from bot.sql_helper.sql_emby import sql_update_emby
 

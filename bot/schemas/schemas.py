@@ -173,6 +173,6 @@ class Yulv(BaseModel):
 
     @classmethod
     def load_yulv(cls):
-        with open("bot/func_helper/yvlu.json", "r", encoding="utf-8") as f:
+        with open("bot/storage/yvlu.json", "r", encoding="utf-8") as f:
             yulv = json.load(f)
             return cls(**yulv)

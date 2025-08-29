@@ -5,17 +5,6 @@ from bot import admins, owner, group, LOGGER
 from pyrogram.enums import ChatMemberStatus
 
 
-# async def owner_filter(client, update):
-#     """
-#     过滤 owner
-#     :param client:
-#     :param update:
-#     :return:
-#     """
-#     user = update.from_user or update.sender_chat
-#     uid = user.id
-#     return uid == owner
-
 # 三个参数给on用
 async def admins_on_filter(filt, client, update) -> bool:
     """
@@ -118,3 +107,5 @@ admins_filter = create(admins_filter)
 # 过滤 是否在群内
 user_in_group_f = create(user_in_group_filter)
 user_in_group_on_filter = create(user_in_group_on_filter)
+
+

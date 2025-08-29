@@ -1,30 +1,29 @@
-#! /usr/bin/python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# 从 bot/func_helper/msg_utils.py 迁移的实现（已带类型注解），保留对外 API 不变
+
 import asyncio
-from aiogram import F
+from typing import Optional, Union
+
 from aiogram.exceptions import TelegramBadRequest
 from aiogram.types import CallbackQuery, Message
 from bot import LOGGER, group, bot
 
-# 自定义异常类，替代 pyromod 的 ListenerTimeout
+
 class ListenerTimeout(Exception):
     """监听超时异常"""
     pass
 
 
-# 将来自己要是重写，希望不要把/cancel当关键词，用call.data，省代码还好看，切记。
-
-async def sendMessage(message, text: str, buttons=None, timer=None, send=False, chat_id=None):
-    """
-    发送消息
-    :param message: 消息
-    :param text: 实体
-    :param buttons: 按钮
-    :param timer: 定时删除
-    :param send: 非reply,发送到第一个主授权群组
-    :return:
-    """
+async def sendMessage(
+    message: Union[Message, CallbackQuery],
+    text: str,
+    buttons=None,
+    timer: Optional[int] = None,
+    send: bool = False,
+    chat_id: Optional[int] = None,
+):
     if isinstance(message, CallbackQuery):
         message = message.message
     try:
@@ -32,24 +31,21 @@ async def sendMessage(message, text: str, buttons=None, timer=None, send=False, 
             if chat_id is None:
                 chat_id = group[0]
             return await bot.send_message(chat_id=chat_id, text=text, reply_markup=buttons)
-        # 禁用通知 disable_notification=True,
-        send = await message.reply(text=text, quote=True, disable_web_page_preview=True, reply_markup=buttons)
+        send_msg = await message.reply(text=text, quote=True, disable_web_page_preview=True, reply_markup=buttons)
         if timer is not None:
-            return await deleteMessage(send, timer)
+            return await deleteMessage(send_msg, timer)
         return True
     except Exception as e:
         LOGGER.error(str(e))
         return str(e)
 
 
-async def editMessage(message, text: str, buttons=None, timer=None):
-    """
-    编辑消息
-    :param message:
-    :param text:
-    :param buttons:
-    :return:
-    """
+async def editMessage(
+    message: Union[Message, CallbackQuery],
+    text: str,
+    buttons=None,
+    timer: Optional[int] = None,
+):
     if isinstance(message, CallbackQuery):
         message = message.message
     try:
@@ -59,30 +55,23 @@ async def editMessage(message, text: str, buttons=None, timer=None):
         return True
     except TelegramBadRequest as e:
         if 'BUTTON_URL_INVALID' in str(e):
-            # await editMessage(message, text='⚠️ 底部按钮设置失败。', buttons=back_start_ikb)
             return False
-        # 判断是否是因为编辑到一样的消息
         if "MESSAGE_NOT_MODIFIED" in str(e) or 'MESSAGE_ID_INVALID' in str(e):
-            # await callAnswer(message, "慢速模式开启，切勿多点\n慢一点，慢一点，生活更有趣 - zztai", True)
             return False
         else:
-            # 记录或处理其他异常
             LOGGER.warning(e)
     except Exception as e:
         LOGGER.error(str(e))
         return str(e)
 
 
-async def sendFile(message, file, file_name, caption=None, buttons=None):
-    """
-    发送文件
-    :param message:
-    :param file:
-    :param file_name:
-    :param caption:
-    :param buttons:
-    :return:
-    """
+async def sendFile(
+    message: Union[Message, CallbackQuery],
+    file,
+    file_name: str,
+    caption: Optional[str] = None,
+    buttons=None,
+):
     if isinstance(message, CallbackQuery):
         message = message.message
     try:
@@ -93,17 +82,15 @@ async def sendFile(message, file, file_name, caption=None, buttons=None):
         return str(e)
 
 
-async def sendPhoto(message, photo, caption=None, buttons=None, timer=None, send=False, chat_id=None):
-    """
-    发送图片
-    :param message:
-    :param photo:
-    :param caption:
-    :param buttons:
-    :param timer:
-    :param send: 是否发送到授权主群
-    :return:
-    """
+async def sendPhoto(
+    message: Union[Message, CallbackQuery],
+    photo,
+    caption: Optional[str] = None,
+    buttons=None,
+    timer: Optional[int] = None,
+    send: bool = False,
+    chat_id: Optional[int] = None,
+):
     if isinstance(message, CallbackQuery):
         message = message.message
     try:
@@ -111,53 +98,43 @@ async def sendPhoto(message, photo, caption=None, buttons=None, timer=None, send
             if chat_id is None:
                 chat_id = group[0]
             return await bot.send_photo(chat_id=chat_id, photo=photo, caption=caption, reply_markup=buttons)
-        # quote=True 引用回复
-        send = await message.reply_photo(photo=photo, caption=caption, reply_markup=buttons)
+        send_msg = await message.reply_photo(photo=photo, caption=caption, reply_markup=buttons)
         if timer is not None:
-            return await deleteMessage(send, timer)
+            return await deleteMessage(send_msg, timer)
         return True
     except Exception as e:
         LOGGER.error(str(e))
         return str(e)
 
 
-async def deleteMessage(message, timer=None):
-    """
-    删除消息,带定时
-    :param message:
-    :param timer:
-    :return:
-    """
+async def deleteMessage(message: Union[Message, CallbackQuery], timer: Optional[int] = None):
     if timer is not None:
         await asyncio.sleep(timer)
     if isinstance(message, CallbackQuery):
         try:
             await message.message.delete()
-            return await callAnswer(message, '✔️ Done!')  # 返回 True 表示删除成功
+            return await callAnswer(message, '✔️ Done!')
         except Exception as e:
             LOGGER.error(e)
-            return str(e)  # 返回异常字符串表示删除出错
+            return str(e)
     else:
         try:
             await message.delete()
-            return True  # 返回 True 表示删除成功
+            return True
         except Exception as e:
             LOGGER.warning(e)
             await message.reply(f'⚠️ **错误！**检查群组 `{message.chat.id}` 权限 【删除消息】')
-            # return await deleteMessage(send, 60)
         except Exception as e:
             LOGGER.error(e)
-            return str(e)  # 返回异常字符串表示删除出错
+            return str(e)
 
 
-async def callAnswer(callbackquery: CallbackQuery, query, bool=False):
+async def callAnswer(callbackquery: CallbackQuery, query: str, show_alert: bool = False):
     try:
-        await callbackquery.answer(query, show_alert=bool)
+        await callbackquery.answer(query, show_alert=show_alert)
         return True
     except TelegramBadRequest as e:
-        # 判断异常的消息是否是 "Query_id_invalid"
         if "QUERY_ID_INVALID" in str(e):
-            # 忽略这个异常
             return False
         else:
             LOGGER.error(str(e))
@@ -167,10 +144,8 @@ async def callAnswer(callbackquery: CallbackQuery, query, bool=False):
         return str(e)
 
 
-async def callListen(callbackquery, timer: int = 120, buttons=None):
+async def callListen(callbackquery: CallbackQuery, timer: int = 120, buttons=None):
     try:
-        # TODO: 实现 aiogram 版本的监听功能
-        # 这里需要根据 aiogram 的架构重新设计
         await editMessage(callbackquery, '💦 __功能暂未实现__ **请等待更新！**', buttons=buttons)
         return False
     except ListenerTimeout:
@@ -178,10 +153,8 @@ async def callListen(callbackquery, timer: int = 120, buttons=None):
         return False
 
 
-async def call_dice_Listen(callbackquery, timer: int = 120, buttons=None):
+async def call_dice_Listen(callbackquery: CallbackQuery, timer: int = 120, buttons=None):
     try:
-        # TODO: 实现 aiogram 版本的骰子监听功能
-        # 这里需要根据 aiogram 的架构重新设计
         await editMessage(callbackquery, '💦 __功能暂未实现__ **请等待更新！**', buttons=buttons)
         return False
     except ListenerTimeout:
@@ -189,22 +162,17 @@ async def call_dice_Listen(callbackquery, timer: int = 120, buttons=None):
         return False
 
 
-async def callAsk(callbackquery, text, timer: int = 120, button=None):
-    # TODO: 实现 aiogram 版本的 ask 功能
-    # 这里需要根据 aiogram 的架构重新设计
+async def callAsk(callbackquery: CallbackQuery, text: str, timer: int = 120, button=None):
     try:
-        # 暂时返回 False，等待实现
         return False
     except:
         return False
 
 
-async def ask_return(update, text, timer: int = 120, button=None):
+async def ask_return(update: Union[Message, CallbackQuery], text: str, timer: int = 120, button=None):
     if isinstance(update, CallbackQuery):
         update = update.message
     try:
-        # TODO: 实现 aiogram 版本的 ask 功能
-        # 这里需要根据 aiogram 的架构重新设计
         await sendMessage(update, '💦 __功能暂未实现__ **请等待更新！**', buttons=button)
         return False
     except ListenerTimeout:
@@ -216,20 +184,18 @@ import re
 import html
 
 
-# 转义特殊字符
-def escape_html_special_chars(text):
-    # 定义一些常用的字符
-    pattern = r"[\\`*_{}[\]()#+-.!|]"
-    # 使用正则表达式替换掉特殊字符
+def escape_html_special_chars(text: str) -> str:
+    pattern = r"[\\`*_{}\[\]()#+-.!|]"
     text = re.sub(pattern, r"\\\g<0>", text)
-    # 使用html模块转义HTML的特殊字符
     text = html.escape(text)
     return text
 
 
-def escape_markdown(text):
+def escape_markdown(text: Optional[str]) -> str:
     return (
         re.sub(r"([_*\[\]()~`>\#\+\-=|{}\.!\\])", r"\\\1", html.unescape(text))
         if text
         else str()
     )
+
+

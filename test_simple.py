@@ -12,11 +12,11 @@ try:
     print("✅ bot和dp导入成功")
     
     print("2. 测试按钮模块导入...")
-    from bot.func_helper.aiogram_buttons import judge_start_ikb, group_f
+    from bot.ui.aiogram_buttons import judge_start_ikb, group_f
     print("✅ 按钮模块导入成功")
     
     print("3. 测试消息工具模块导入...")
-    from bot.func_helper.msg_utils import sendMessage, editMessage
+    from bot.messaging.msg_utils import sendMessage, editMessage
     print("✅ 消息工具模块导入成功")
     
     print("\n🎉 基本功能测试通过！")

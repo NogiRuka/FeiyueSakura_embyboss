@@ -4,7 +4,7 @@
 关闭消息回调处理器 - aiogram版本
 """
 
-from aiogram import Router, F
+from aiogram import Router, F, Dispatcher
 from aiogram.types import CallbackQuery
 
 # 创建路由器
@@ -20,6 +20,6 @@ async def close_message_callback(callback: CallbackQuery):
         await callback.answer("❌ 无法删除消息")
 
 # 注册路由器
-def register_close_it_router():
-    from bot import dp
-    dp.include_router(router)
+def register_close_it_router(dispatcher: Dispatcher) -> None:
+    """注册关闭消息回调路由到指定 `dispatcher`。"""
+    dispatcher.include_router(router)

@@ -3,11 +3,11 @@ import cn2an
 from datetime import datetime, timezone, timedelta
 
 from bot import bot, bot_photo, group, sakura_b, LOGGER, ranks, _open
-from bot.func_helper.emby import emby
-from bot.func_helper.utils import convert_to_beijing_time, convert_s, cache, get_users
+from bot.integrations.emby import emby
+from bot.common.utils import convert_to_beijing_time, convert_s, cache, get_users
 from bot.sql_helper import Session
 from bot.sql_helper.sql_emby import sql_get_emby, sql_update_embys, Emby, sql_update_emby
-from bot.func_helper.aiogram_buttons import plays_list_button
+from bot.ui.aiogram_buttons import plays_list_button
 
 
 class Uplaysinfo:

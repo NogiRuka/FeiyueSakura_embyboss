@@ -8,13 +8,13 @@ import asyncio
 from pyrogram import filters
 
 from bot import bot, ranks, bot_photo, bot_name
-from bot.func_helper.filters import user_in_group_on_filter
+from bot.filters import user_in_group_on_filter
 from pyrogram.types import (InlineQueryResultArticle, InputTextMessageContent,
                             InlineKeyboardMarkup, InlineKeyboardButton, InlineQuery, ChosenInlineResult)
-from bot.func_helper.emby import emby
+from bot.integrations.emby import emby
 from bot.sql_helper.sql_emby import sql_get_emby
 from pyrogram.errors import BadRequest
-from bot.func_helper.msg_utils import callAnswer
+from bot.messaging.msg_utils import callAnswer
 
 
 @bot.on_inline_query(user_in_group_on_filter)

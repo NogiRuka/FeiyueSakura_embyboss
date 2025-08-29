@@ -8,9 +8,9 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command
 from bot import bot, dp, owner, group, main_group, bot_name, chanel
-from bot.func_helper.aiogram_buttons import judge_start_ikb, judge_group_ikb, group_f
-from bot.func_helper.msg_utils import sendMessage, editMessage
-from bot.func_helper.utils import judge_admins
+from bot.ui.aiogram_buttons import judge_start_ikb, judge_group_ikb, group_f
+from bot.messaging.msg_utils import sendMessage, editMessage
+from bot.common.utils import judge_admins
 
 # 创建路由器
 router = Router(name="start")

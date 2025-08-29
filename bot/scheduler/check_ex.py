@@ -7,7 +7,7 @@ from pyrogram.errors import FloodWait
 from sqlalchemy import and_
 from asyncio import sleep
 from bot import bot, group, LOGGER, _open
-from bot.func_helper.emby import emby
+from bot.integrations.emby import emby
 from bot.sql_helper.sql_emby import Emby, get_all_emby, sql_update_emby
 from bot.sql_helper.sql_emby2 import get_all_emby2, Emby2, sql_update_emby2
 

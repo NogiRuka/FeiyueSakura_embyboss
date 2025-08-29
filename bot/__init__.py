@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import contextlib
 
-from .func_helper.logger_config import logu, Now
+from .logging.logger_config import logu, Now
 
 LOGGER = logu(__name__)
 

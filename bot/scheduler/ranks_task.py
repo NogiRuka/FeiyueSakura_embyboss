@@ -4,8 +4,8 @@
 from pyrogram import enums
 from datetime import date
 
-from bot.func_helper.utils import convert_s
-from bot.func_helper.emby import emby
+from bot.common.utils import convert_s
+from bot.integrations.emby import emby
 from bot.ranks_helper import ranks_draw
 from bot import bot, group, ranks, LOGGER, schedall, save_config
 
