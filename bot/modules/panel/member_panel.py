@@ -19,7 +19,13 @@ router = Router(name="member_panel")
 @router.callback_query(F.data == "members")
 async def members_panel_callback(callback: CallbackQuery):
     """用户面板"""
+    # 添加详细日志
+    from bot import LOGGER
+    LOGGER.info(f"🎯 用户面板回调 - 用户ID: {callback.from_user.id}, 用户名: @{callback.from_user.username}")
+    LOGGER.info(f"🎯 回调数据: {callback.data}")
+    
     if not await user_in_group_filter(callback):
+        LOGGER.warning(f"⚠️ 用户 {callback.from_user.id} 不在授权群组中")
         await callback.answer("❌ 您不在授权群组中")
         return
     

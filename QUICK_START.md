@@ -85,7 +85,7 @@ pip install aiogram
 ## 📁 项目结构
 
 ```
-FeiyueSakura_embyboss/
+lustfulservicebot/
 ├── main.py                 # 主程序入口
 ├── config.json            # 配置文件
 ├── requirements.txt        # 依赖列表

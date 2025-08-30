@@ -18,8 +18,8 @@
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/your-username/FeiyueSakura_embyboss.git
-cd FeiyueSakura_embyboss
+git clone https://github.com/your-username/lustfulservicebot.git
+cd lustfulservicebot
 ```
 
 ### 2. 安装Python依赖
@@ -131,7 +131,7 @@ A: 数据库会自动备份到 `./db_backup/` 目录，也可以手动复制 `./
    [Service]
    Type=simple
    User=your-username
-   WorkingDirectory=/path/to/FeiyueSakura_embyboss
+   WorkingDirectory=/path/to/lustfulservicebot
    ExecStart=/usr/bin/python3 main.py
    Restart=always
    RestartSec=10
@@ -172,7 +172,7 @@ pip install -r requirements.txt
 ### 权限问题
 确保Python有读写项目目录的权限：
 ```bash
-chmod -R 755 /path/to/FeiyueSakura_embyboss
+chmod -R 755 /path/to/lustfulservicebot
 ```
 
 ### 端口问题

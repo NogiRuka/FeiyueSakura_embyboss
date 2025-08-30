@@ -7,8 +7,8 @@
     "group": [
         -1002216963051
     ],
-    "main_group": "test_group",
-    "chanel": "test_channel",
+    "main_group": "lustfulboy",
+    "chanel": "lustfulboytestchannel",
     "bot_photo": "https://telegra.ph/file/3b6cd2a89b652e72e0d3b.png",
     "open": {
         "stat": false,
@@ -27,8 +27,8 @@
     },
     "admins": [],
     "money": "花币",
-    "emby_api": "YOUR_EMBY_API_KEY",
-    "emby_url": "http://localhost:8096",
+    "emby_api": "fc26aeb606c248b29662c7ecaebe991e",
+    "emby_url": "https://lustfulboy.com:8096",
     "emby_block": [
         "nsfw"
     ],
